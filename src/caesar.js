@@ -4,10 +4,30 @@
 // of the anonymous function on line 6
 
 const caesarModule = (function () {
-  // you can add any code you want within this function scope
+  function translateIndexToLetter(index) {
+    const alphabet = "abcdefghijklmnopqrstuvwxyz".split("");
+    if (index < 26 && index >= 0) {
+      return alphabet[index]; // within the alphabet range
+    } else if (index < 0) {
+      return alphabet[26 + index]; // convert negative indexes into positive alphabet range
+    } else if (index >= 26) {
+      return alphabet[index - 26]; // convert indexes beyond range into alphabet range
+    }
+  }
 
-  function caesar(input, shift, encode = true) {
-    // your solution code here
+  function caesar(input, shift = 0, encode = true) {
+    const alphabet = "abcdefghijklmnopqrstuvwxyz".split("");
+    if (shift < -25 || shift > 25 || shift === 0) return false;
+    const inputArray = input.toLowerCase().split("");
+    const translatedArray = inputArray.map((character) => {
+      if (!alphabet.includes(character)) return character; // return non-alphabetical characters (e.g. spaces, periods)
+      let shiftedIndex = alphabet.indexOf(character) + shift;  // add shift to letter index
+      if (encode === false) {  //decoding
+        shiftedIndex = alphabet.indexOf(character) - shift;
+      }
+      return translateIndexToLetter(shiftedIndex);
+    });
+    return translatedArray.join("");
   }
 
   return {
