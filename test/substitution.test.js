@@ -57,7 +57,7 @@ describe("Decoded a message", () => {
 
     it("returns a decoded message when the input has spaces", () => {
         const expected = 'thinkful thinkful';
-        const actual = substitions("jrufscpw jrufscpw", "xoyqmcgrukswaflnthdjpzibev", false);
+        const actual = substitution("jrufscpw jrufscpw", "xoyqmcgrukswaflnthdjpzibev", false);
         expect(actual).to.equal(expected);
     })
 
