@@ -42,7 +42,7 @@ describe("Encoding a message", () => {
     });
 
     it("returns a encoding string when input includes special characters", () => {
-        const expected = 'elp xhm xf mbymwwmfj dne';
+        const expected = "y&ii$r&";
         const actual = substitution("message", "$wae&zrdxtfcygvuhbijnokmpl");
         expect(actual).to.equal(expected); 
     });    
