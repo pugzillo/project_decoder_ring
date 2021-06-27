@@ -1,5 +1,5 @@
-const substitutionModule = require("../src/substition");
-const substitution = substitionModule.substitution; 
+const substitutionModule = require("../src/substitution");
+const substitution = substitutionModule.substitution; 
 const expect = require("chai").expect;
 
 describe("Error handling", () => {
