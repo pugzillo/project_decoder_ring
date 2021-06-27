@@ -3,6 +3,12 @@ const substitution = substitionModule.substitution;
 const expect = require("chai").expect;
 
 describe("Error handling", () => {
+    it("returns false when the alphabet parameter is not provided", () => {
+        const expected = false;
+        const actual = substitution("thinkful");
+        expect(actual).to.equal(expected);
+    })
+     
     it("returns a false when the alphabet parameter is below 26 characters", () => {
         const expected = false; 
         const actual = substitution("thinkful", "short");
@@ -48,6 +54,12 @@ describe("Decoded a message", () => {
         const actual = substitution("jrufscpw", "xoyqmcgrukswaflnthdjpzibev", false);
         expect(actual).to.equal(expected); 
     });
+
+    it("returns a decoded message when the input has spaces", () => {
+        const expected = 'thinkful thinkful';
+        const actual = substitions("jrufscpw jrufscpw", "xoyqmcgrukswaflnthdjpzibev", false);
+        expect(actual).to.equal(expected);
+    })
 
     it("returns a decoded message when input includes special characters", () => {
         const expected = "message"
