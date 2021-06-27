@@ -34,6 +34,16 @@ const substitutionModule = (function () {
           }
         }
       })
+    } else {
+      result = inputArray.map((char) => {
+        for (let key of Object.keys(cipher)) {
+          if (char === key) {
+            return cipher[key];
+          } else if (char === " ") {
+            return char;
+          }
+        }
+      })
     }
 
     return result.join("");
