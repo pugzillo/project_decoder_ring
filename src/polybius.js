@@ -19,7 +19,7 @@ const polybiusModule = (function () {
       : row.map((letter) => [letter])
   );
 
-  function decode(input) {
+  function _decode(input) {
     const column = input[0] - 1; // plus one to account for zero start index
     const row = input[1] - 1;
     if (square[row][column][0] === "i") {
@@ -30,8 +30,9 @@ const polybiusModule = (function () {
   }
 
   function polybius(input, encode = true) {
-    if (input.replace(/\s+/g, "").length % 2 !== 0 && encode === false)
+    if (input.replace(/\s+/g, "").length % 2 !== 0 && encode === false) {
       return false; // when number of characters, excluding spaces, is not even
+    }
 
     const inputArray = input.toLowerCase().split("");
     let translatedArray = [];
@@ -40,7 +41,7 @@ const polybiusModule = (function () {
       translatedArray = inputArray.map((char) => {
         if (!alphabet.includes(char)) return char; // return non-alphabetic characters
         let result;
-        square.forEach((row, rowIdx) => {
+        square.forEach((row, rowIdx) => { // venture through 2D array to look for characters
           row.forEach((col, colIdx) => {
             if (col.find((letter) => letter === char)) {
               result = `${colIdx + 1}${rowIdx + 1}`;
@@ -49,14 +50,13 @@ const polybiusModule = (function () {
         });
         return result;
       });
-
       return translatedArray.join("");
     } else {
-      const inputArrayBySpace = input.split(" ");
+      const inputArrayBySpace = input.split(" "); // decoding
       inputArrayBySpace.forEach((set) => {
         let word = [];
         for (let i = 0; i < set.length; i += 2) {
-          word.push(decode(set[i] + set[i + 1]));
+          word.push(_decode(set[i] + set[i + 1]));
         }
         translatedArray.push(word.join(""));
       });
@@ -66,10 +66,7 @@ const polybiusModule = (function () {
 
   return {
     polybius,
-    decode,
   };
 })();
 
 module.exports = { polybius: polybiusModule.polybius };
-
-console.log(polybiusModule.polybius("3251131343 2543241341", false));
