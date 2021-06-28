@@ -2,7 +2,7 @@ const caesarModule = require("../src/caesar");
 const expect = require("chai").expect;
 const caesar = caesarModule.caesar;
 
-describe("Decoding", () => {
+describe("Caesar: Decoding", () => {
   it("should return an encoded string with a positive shift", () => {
     const expected = "wklqnixo";
     const actual = caesar("thinkful", 3);
@@ -22,7 +22,7 @@ describe("Decoding", () => {
   });
 });
 
-describe("Encoding", () => {
+describe("Caesar: Encoding", () => {
   it("should return a decoded string when encode is set to false", () => {
     const expected = "thinkful";
     const actual = caesar("wklqnixo", 3, false);

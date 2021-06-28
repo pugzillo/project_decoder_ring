@@ -2,7 +2,7 @@ const substitutionModule = require("../src/substitution");
 const substitution = substitutionModule.substitution; 
 const expect = require("chai").expect;
 
-describe("Error handling", () => {
+describe("Substitution: Error handling", () => {
     it("returns false when the alphabet parameter is not provided", () => {
         const expected = false;
         const actual = substitution("thinkful");
@@ -28,7 +28,7 @@ describe("Error handling", () => {
     });
 })
 
-describe("Encoding a message", () => {
+describe("Substitution: Encoding a message", () => {
     it("returns a encoding string when input does not include spaces", () => {
         const expected = 'jrufscpw';
         const actual = substitution("thinkful", "xoyqmcgrukswaflnthdjpzibev");
@@ -48,7 +48,7 @@ describe("Encoding a message", () => {
     });    
 })
 
-describe("Decoded a message", () => {
+describe("Substitution: Decoded a message", () => {
     it("returns a decoded message when input does not include spaces", () => {
         const expected = 'thinkful';
         const actual = substitution("jrufscpw", "xoyqmcgrukswaflnthdjpzibev", false);
