@@ -54,8 +54,4 @@ const substitutionModule = (function () {
   };
 })();
 
-console.log(
-  substitutionModule.substitution("thinkful", "xoyqmcgrukswaflnthdjpzibev")
-);
-
 module.exports = { substitution: substitutionModule.substitution };
