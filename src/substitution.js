@@ -4,7 +4,6 @@
 // of the anonymous function on line 6
 
 const substitutionModule = (function () {
-
   // Unique characters in a string
   function findUnique(str) {
     str = str.split("");
@@ -13,18 +12,19 @@ const substitutionModule = (function () {
   }
 
   function substitution(input, alphabet, encode = true) {
-    if(alphabet === undefined || findUnique(alphabet).length !== 26 ) return false; // returns false if no alphabet parameter is included or if invalid
-  
+    if (alphabet === undefined || findUnique(alphabet).length !== 26)
+      return false; // returns false if no alphabet parameter is included or if invalid
+
     // Creating cipher object
     const keys = alphabet.split("");
     const values = "abcdefghijklmnopqrstuvwxyz".split("");
     let cipher = {};
-    keys.forEach((key, index) => cipher[key] = values[index]);
+    keys.forEach((key, index) => (cipher[key] = values[index]));
 
     const inputArray = input.toLowerCase().split("");
     let result = [];
 
-    if(encode) {
+    if (encode) {
       result = inputArray.map((char) => {
         for (let key of Object.keys(cipher)) {
           if (char === cipher[key]) {
@@ -33,7 +33,7 @@ const substitutionModule = (function () {
             return char;
           }
         }
-      })
+      });
     } else {
       result = inputArray.map((char) => {
         for (let key of Object.keys(cipher)) {
@@ -43,11 +43,10 @@ const substitutionModule = (function () {
             return char;
           }
         }
-      })
+      });
     }
 
     return result.join("");
-
   }
 
   return {
@@ -55,6 +54,8 @@ const substitutionModule = (function () {
   };
 })();
 
-console.log(substitutionModule.substitution("thinkful", "xoyqmcgrukswaflnthdjpzibev"));
+console.log(
+  substitutionModule.substitution("thinkful", "xoyqmcgrukswaflnthdjpzibev")
+);
 
 module.exports = { substitution: substitutionModule.substitution };
