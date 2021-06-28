@@ -2,7 +2,15 @@ const polybiusModule = require("../src/polybius");
 const polybius = polybiusModule.polybius;
 const expect = require("chai").expect;
 
-describe("polybius", () => {
+describe("Error Handling", () => {
+  it("returns false when the number of characters in the input, excluding spaces, is not even", () => {
+    const expected = false;
+    const actual = polybius("44324233521254134", false);
+    expect(actual).to.equal(expected);
+  });
+})
+
+describe("Encoding", () => {
   it("returns an encoded string when a word with only letters is inputted", () => {
     const expected = "4432423352125413";
     const actual = polybius("thinkful");
@@ -14,7 +22,9 @@ describe("polybius", () => {
     const actual = polybius("Hello world");
     expect(actual).to.equal(expected);
   });
+})
 
+describe("Decoding a string", () => {
   it("returns a decoded string with a string with spaces is inputted", () => {
     const expected = "hello world";
     const actual = polybius("3251131343 2543241341", false);
@@ -26,10 +36,4 @@ describe("polybius", () => {
     const actual = polybius("4432423352125413", false);
     expect(actual).to.equal(expected);
   });
-
-  it("returns false when the number of characters in the input, excluding spaces, is not even", () => {
-    const expected = false;
-    const actual = polybius("44324233521254134", false);
-    expect(actual).to.equal(expected);
-  });
-});
+})
