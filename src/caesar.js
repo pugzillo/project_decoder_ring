@@ -4,8 +4,9 @@
 // of the anonymous function on line 6
 
 const caesarModule = (function () {
-  function translateIndexToLetter(index) {
-    const alphabet = "abcdefghijklmnopqrstuvwxyz".split("");
+  const alphabet = "abcdefghijklmnopqrstuvwxyz".split("");
+
+  function _translateIndexToLetter(index) {
     if (index < 26 && index >= 0) {
       return alphabet[index]; // within the alphabet range
     } else if (index < 0) {
@@ -16,16 +17,15 @@ const caesarModule = (function () {
   }
 
   function caesar(input, shift = 0, encode = true) {
-    const alphabet = "abcdefghijklmnopqrstuvwxyz".split("");
     if (shift < -25 || shift > 25 || shift === 0) return false;
     const inputArray = input.toLowerCase().split("");
     const translatedArray = inputArray.map((character) => {
       if (!alphabet.includes(character)) return character; // return non-alphabetical characters (e.g. spaces, periods)
-      let shiftedIndex = alphabet.indexOf(character) + shift;  // add shift to letter index
-      if (encode === false) {  //decoding
-        shiftedIndex = alphabet.indexOf(character) - shift;
+      let shiftedIndex = alphabet.indexOf(character) + shift; // add shift to letter index
+      if (encode === false) {
+        shiftedIndex = alphabet.indexOf(character) - shift; //decoding
       }
-      return translateIndexToLetter(shiftedIndex);
+      return _translateIndexToLetter(shiftedIndex);
     });
     return translatedArray.join("");
   }
